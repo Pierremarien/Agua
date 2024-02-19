@@ -6,7 +6,7 @@
     "backend": "pnpm --filter @agua/backend",
     "ui": "pnpm --filter @agua/ui",
     "build": "turbo build",
-    "dev": "turbo dev",
+    "dev": "turbo dev & pnpm --filter @agua/utils watch",
     "back": "pnpm backend start",
     "serv": "pnpm backend start:dev",
     "lint": "turbo lint",

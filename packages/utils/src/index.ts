@@ -1,3 +1,3 @@
 import { User } from "./types";
 
-export {User};
+export type {User};
