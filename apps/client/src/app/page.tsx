@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Card } from "@agua/ui/card";
+import { Card, Footer } from "@agua/ui/";
 
 function Gradient({ conic, className, small }: { small?: boolean; conic?: boolean; className?: string }): JSX.Element {
   return (
