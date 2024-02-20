@@ -259,6 +259,9 @@ importers:
       '@agua/typescript-config':
         specifier: workspace:*
         version: link:../config-typescript
+      '@agua/utils':
+        specifier: workspace:*
+        version: link:../utils
       '@types/react':
         specifier: ^18.2.46
         version: 18.2.46

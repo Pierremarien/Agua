@@ -22,6 +22,7 @@
     "@agua/eslint-config": "workspace:*",
     "@agua/tailwind-config": "workspace:*",
     "@agua/typescript-config": "workspace:*",
+    "@agua/utils": "workspace:*",
     "@types/react": "^18.2.46",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.33",
