@@ -1,18 +1,10 @@
 import Image from "next/image";
-import { Card } from "@repo/ui/card";
+import { Card } from "@agua/ui/card";
 
-function Gradient({
-  conic,
-  className,
-  small,
-}: {
-  small?: boolean;
-  conic?: boolean;
-  className?: string;
-}): JSX.Element {
+function Gradient({ conic, className, small }: { small?: boolean; conic?: boolean; className?: string }): JSX.Element {
   return (
     <span
-      className={`absolute mix-blend-normal will-change-[filter] rounded-[100%] ${
+      className={`absolute rounded-[100%] mix-blend-normal will-change-[filter] ${
         small ? "blur-[32px]" : "blur-[75px]"
       } ${conic ? "bg-glow-conic" : ""} ${className}`}
     />
@@ -38,79 +30,50 @@ const LINKS = [
   {
     title: "Deploy",
     href: "https://vercel.com/new",
-    description:
-      "Instantly deploy your Turborepo to a shareable URL with Vercel.",
+    description: "Instantly deploy your Turborepo to a shareable URL with Vercel.",
   },
 ];
 
 export default function Page(): JSX.Element {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen p-24">
-      <div className="z-10 items-center justify-between w-full max-w-5xl font-mono text-sm lg:flex">
-        <p className="fixed top-0 left-0 flex justify-center w-full px-4 pt-8 pb-6 border-b bg-gradient-to-b backdrop-blur-2xl border-neutral-800 bg-zinc-800/30 from-inherit lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:bg-zinc-800/30">
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-neutral-800 bg-zinc-800/30 bg-gradient-to-b from-inherit px-4 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200 lg:bg-zinc-800/30 lg:p-4">
           examples/with-tailwind -&nbsp;
           <code className="font-mono font-bold">docs</code>
         </p>
-        <div className="fixed bottom-0 left-0 flex items-end justify-center w-full h-48 bg-gradient-to-t from-black via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
+        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-black via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
-            className="flex gap-2 p-8 pointer-events-none place-items-center lg:pointer-events-auto lg:p-0"
+            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
             href="https://vercel.com?utm_source=create-turbo&utm_medium=basic&utm_campaign=create-turbo"
             rel="noopener noreferrer"
-            target="_blank"
-          >
-            By{" "}
-            <Image
-              alt="Vercel Logo"
-              className="invert"
-              height={24}
-              priority
-              src="/vercel.svg"
-              width={100}
-            />
+            target="_blank">
+            By <Image alt="Vercel Logo" className="invert" height={24} priority src="/vercel.svg" width={100} />
           </a>
         </div>
       </div>
 
       <div className="relative flex place-items-center ">
-        <div className="font-sans w-auto pb-16 pt-[48px] md:pb-24 lg:pb-32 md:pt-16 lg:pt-20 flex justify-between gap-8 items-center flex-col relative z-0">
-          <div className="z-50 flex items-center justify-center w-full">
-            <div className="absolute min-w-[614px] min-h-[614px]">
-              <Image
-                alt="Turborepo"
-                height={614}
-                src="circles.svg"
-                width={614}
-              />
+        <div className="relative z-0 flex w-auto flex-col items-center justify-between gap-8 pb-16 pt-[48px] font-sans md:pb-24 md:pt-16 lg:pb-32 lg:pt-20">
+          <div className="z-50 flex w-full items-center justify-center">
+            <div className="absolute min-h-[614px] min-w-[614px]">
+              <Image alt="Turborepo" height={614} src="circles.svg" width={614} />
             </div>
-            <div className="absolute z-50 flex items-center justify-center w-64 h-64">
-              <Gradient
-                className="opacity-90 w-[120px] h-[120px]"
-                conic
-                small
-              />
+            <div className="absolute z-50 flex h-64 w-64 items-center justify-center">
+              <Gradient className="h-[120px] w-[120px] opacity-90" conic small />
             </div>
 
-            <div className="w-[120px] h-[120px] z-50">
-              <Image
-                alt=""
-                height={120}
-                priority
-                src="turborepo.svg"
-                width={120}
-              />
+            <div className="z-50 h-[120px] w-[120px]">
+              <Image alt="" height={120} priority src="turborepo.svg" width={120} />
             </div>
           </div>
-          <Gradient
-            className="top-[-500px] opacity-[0.15] w-[1000px] h-[1000px]"
-            conic
-          />
+          <Gradient className="top-[-500px] h-[1000px] w-[1000px] opacity-[0.15]" conic />
           <div className="z-50 flex flex-col items-center justify-center gap-5 px-6 text-center lg:gap-6">
             <svg
-              className="w-[160px] md:w-[200px] fill-white"
+              className="w-[160px] fill-white md:w-[200px]"
               viewBox="0 0 506 50"
               width={200}
-              xmlns="http://www.w3.org/2000/svg"
-            >
+              xmlns="http://www.w3.org/2000/svg">
               <title>Turborepo logo</title>
               <path d="M53.7187 12.0038V1.05332H0.945312V12.0038H20.8673V48.4175H33.7968V12.0038H53.7187Z" />
               <path d="M83.5362 49.1431C99.764 49.1431 108.67 40.8972 108.67 27.3081V1.05332H95.7401V26.0547C95.7401 33.6409 91.7821 37.9287 83.5362 37.9287C75.2904 37.9287 71.3324 33.6409 71.3324 26.0547V1.05332H58.4029V27.3081C58.4029 40.8972 67.3084 49.1431 83.5362 49.1431Z" />
@@ -126,7 +89,7 @@ export default function Page(): JSX.Element {
         </div>
       </div>
 
-      <div className="grid mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
+      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
         {LINKS.map(({ title, href, description }) => (
           <Card href={href} key={title} title={title}>
             {description}
