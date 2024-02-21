@@ -9,3 +9,119 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id          Int     @id @default(autoincrement())
+  email       String  @unique
+  firstname   String?
+  lastname    String?
+  password    String  @unique
+  username    String  @unique
+  isAdmin     Boolean @default(false)
+  isModerator Boolean @default(false)
+}
+
+model Projet {
+  id                  Int    @id @default(autoincrement())
+  title               String
+  description         String
+  preview             String
+  target              String
+  status             Status @relation(fields: [statusId], references: [id])
+  statusId           Int
+  image_projet      Image_projet @relation(fields: [image_projetId], references: [id])
+  image_projetId    Int
+  image_projet_fini Image_projet_fini @relation(fields: [image_projet_finiId], references: [id])
+  image_projet_finiId Int
+  termine_description String
+  reference       Reference @relation(fields: [referenceId], references: [id])
+  referenceId     Int
+  client         Client @relation(fields: [clientId], references: [id])
+  clientId       Int
+}
+
+model Membre {
+  id          Int     @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  email       String?
+  phone       Int?
+  position    String
+  image       String
+  description String
+  cv          String?
+}
+
+model Company {
+  id               Int    @id @default(autoincrement())
+  name             String
+  description      String
+  logo             String
+  email            String
+  phone            Int
+  fax              Int
+  address          String
+  locality         String
+  postalCode       Int
+  about_team       String
+  about_company    String
+  about_references String
+  image            String
+  facebook         String
+  linkedin         String
+  instagram        String
+}
+
+model Reference {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  client      Client   @relation(fields: [clientId], references: [id])
+  clientId    Int 
+  date        DateTime
+  link        String
+  category    Category @relation(fields: [id], references: [id])
+  categoryId  Int
+}
+
+model Image_projet {
+  id       Int    @id @default(autoincrement())
+  name     String
+  url      String
+}
+
+model Image_projet_fini {
+  id       Int    @id @default(autoincrement())
+  name     String
+  url      String
+}
+
+model Sous_genre {
+  id      Int    @id @default(autoincrement())
+  name    String
+  genre   Genre  @relation(fields: [genreId], references: [id])
+  genreId Int
+}
+
+model Genre {
+  id          Int          @id @default(autoincrement())
+  name        String
+}
+
+model Category {
+  id   Int    @id @default(autoincrement())
+  name String
+}
+
+model Client {
+  id Int @id @default(autoincrement())
+  name String
+  mail String
+  reference Reference[]
+  projet Projet[]
+}
+
+model Status {
+  id   Int    @id @default(autoincrement())
+  etat String
+}

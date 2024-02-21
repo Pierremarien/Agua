@@ -41,6 +41,7 @@ export interface Company {
   address: string;
   locality: string;
   email: string;
+  fax: string;
   phone: string;
   about_team: string;
   about_company: string;
