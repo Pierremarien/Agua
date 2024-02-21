@@ -5,7 +5,7 @@
     }
   ],
   "editor.cursorBlinking": "blink",
-  "workbench.activityBar.visible": false,
+  "workbench.activityBar.visible": true,
   "workbench.statusBar.visible": true,
   "workbench.editor.tabSizing": "fit",
   "workbench.editor.pinnedTabSizing": "normal"
