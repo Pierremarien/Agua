@@ -1,9 +1,9 @@
 import React from "react";
 import { Card } from "@agua/ui";
+import type { Company } from "@agua/utils";
 
-export const HomeGrid = () => {
-  // REPLACE THIS WITH SERVER RESPONSE
-  const LINKS = [
+export const HomeGrid: React.FC<Company> = ({ name }) => {
+  const links = [
     {
       title: "Home",
       href: "/",
@@ -25,7 +25,6 @@ export const HomeGrid = () => {
       href: "/contact",
     },
   ];
-  // End of Replacement //
 
   const cardGridPositions = (index: number): string => {
     switch (index) {
@@ -45,8 +44,8 @@ export const HomeGrid = () => {
   };
   return (
     <div className="relative grid h-screen grid-cols-5 grid-rows-4 gap-4 p-4">
-      {/*       <h1>{companyName}</h1> */}
-      {LINKS.map(({ title, href }, index) => (
+      <h1 className="absolute flex h-full w-full items-center justify-center text-[clamp(8rem,28vw,32rem)]">{name}</h1>
+      {links.map(({ title, href }, index) => (
         <Card href={href} key={title} title={title} className={cardGridPositions(index)} />
       ))}
     </div>

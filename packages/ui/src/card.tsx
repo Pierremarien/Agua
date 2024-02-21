@@ -3,11 +3,9 @@ import * as React from "react";
 export function Card({ title, href, className }: { title: string; href: string; className: string }): JSX.Element {
   return (
     <a
-      className={`block h-full w-full rounded-lg bg-white opacity-25 ${className}`}
-      href={`/${href}`}
-      rel="noopener noreferrer"
-      target="_blank">
-      <h2 className="bottom-2 left-2 z-10 text-xl font-semibold text-black">{title}</h2>
+      className={`z-20 flex h-full w-full items-end rounded-lg bg-[#595353]/30 shadow-[0_3px_30px_rgb(0,0,0,0.2)] backdrop-blur-sm hover:bg-[#595353]/50 ${className}`}
+      href={`${href}`}>
+      <h2 className="p-2 text-xl">{title}</h2>
     </a>
   );
 }

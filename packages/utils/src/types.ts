@@ -36,7 +36,7 @@ export interface Membre {
 }
 
 export interface Company {
-  id: string;
+  id: number;
   name: string;
   address: string;
   locality: string;
