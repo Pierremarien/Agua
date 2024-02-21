@@ -1,3 +1,3 @@
-import { Project, News, Reference, Company, Contact, Urbanisme, User, Architecture, Amenagement } from "./types";
+import { Projet, Reference, Company, Membre, Sous_genre, User, Genre, Image_projet, Image_projet_fini } from "./types";
 
-export type { Project, News, Reference, Company, Contact, Urbanisme, User, Architecture, Amenagement };
+export type { Projet, Reference, Company, Membre, Sous_genre, User, Genre, Image_projet, Image_projet_fini };

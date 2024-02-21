@@ -1,36 +1,29 @@
-export interface Project {
-  id: string;
-  type: "urbanisme" | "amenagement" | "architecture";
+export interface Projet {
+  id: number;
   title: string;
   description: string;
-  master: string;
-  status: string;
-  references: string[];
+  preview: string;
   target: string;
-  images: string[];
-  extendedDescription: string;
-  date: Date;
-}
-
-export interface News {
-  id: string;
-  title: string;
-  description: string;
-  date: Date;
-  images: string[];
-  linkedProject: string;
+  status_id: number;
+  image_projet_id: number[];
+  sous_genre_id: number[];
+  image_projet_fini: number[];
+  termine_description: string;
+  reference_id: number[];
+  client_id: number;
 }
 
 export interface Reference {
-  id: string;
+  id: number;
+  client_id: number;
   title: string;
   description: string;
-  images: string[];
-  linkedProject: string;
-  type: "public" | "private" | "press";
+  link: string;
+  category: number;
+  date: Date;
 }
 
-export interface Contact {
+export interface Membre {
   id: string;
   firstName: string;
   lastName: string;
@@ -46,9 +39,12 @@ export interface Company {
   id: string;
   name: string;
   address: string;
+  locality: string;
   email: string;
   phone: string;
-  description: string;
+  about_team: string;
+  about_company: string;
+  about_references: string;
   image: string;
   logo: string;
 }
@@ -59,17 +55,29 @@ export interface User {
   lastName: string;
   email: string;
   password: string;
-  role: "admin" | "user" | "visitor";
+  admin: boolean;
+  moderator: boolean;
 }
 
-export interface Architecture {
-  type: "publique" | "privé";
+export interface Image_projet {
+  id: number;
+  url: string;
+  description: string;
 }
 
-export interface Urbanisme {
-  type: "faisabilité" | "tourisme";
+export interface Image_projet_fini {
+  id: number;
+  url: string;
+  description: string;
 }
 
-export interface Amenagement {
-  type: "abords" | "parc" | "place" | "equipment";
+export interface Sous_genre {
+  id: number;
+  name: string;
+  genre_id: number;
+}
+
+export interface Genre {
+  id: number;
+  name: string;
 }
