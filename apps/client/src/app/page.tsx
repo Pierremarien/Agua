@@ -1,26 +1,44 @@
-import { HomeGrid } from "../components/homeGrid";
-import { Company } from "@agua/utils";
+import { Card } from "@agua/ui";
+import { companyData } from "./fakeData";
 
-export default function Page(): JSX.Element {
-  // Replace this with server answer //
-  const company: Company = {
-    id: 0,
-    name: "agua",
-    address: "ntm",
-    locality: "ntm",
-    email: "ntm",
-    phone: "ntm",
-    about_team: "ntm",
-    about_company: "ntm",
-    about_references: "ntm",
-    image: "ntm",
-    logo: "ntm",
+export const Home = () => {
+  const links = [
+    { title: "Home", href: "/" },
+    { title: "Projets", href: "/projets" },
+    { title: "Références", href: "/references" },
+    { title: "À propos", href: "/a-propos" },
+    { title: "Contact", href: "/contact" },
+  ];
+
+  const cardGridPositions = (index: number): string => {
+    switch (index) {
+      case 0:
+        return "col-span-2 row-span-2";
+      case 1:
+        return "col-span-3 row-span-2 col-start-3";
+      case 2:
+        return "col-span-3 row-span-2 row-start-3";
+      case 3:
+        return "col-span-2 col-start-4 row-start-3";
+      case 4:
+        return "col-span-2 col-start-4 row-start-4";
+      default:
+        return "";
+    }
   };
-  // End of replacement //
 
   return (
-    <main>
-      <HomeGrid {...company} />
+    <main className="relative grid h-screen grid-cols-5 grid-rows-4 gap-4 p-4">
+      {companyData.name && (
+        <h1 className="absolute flex h-full w-full items-center justify-center text-[clamp(8rem,28vw,32rem)]">
+          {companyData.name}
+        </h1>
+      )}
+      {links.map(({ title, href }, index) => (
+        <Card href={href} key={title} title={title} className={cardGridPositions(index)} />
+      ))}
     </main>
   );
-}
+};
+
+export default Home;

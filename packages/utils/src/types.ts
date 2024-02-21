@@ -1,26 +1,26 @@
 export interface Projet {
-  id: number;
+  id: number | null;
   title: string;
   description: string;
-  preview: string;
+  preview: string | null;
   target: string;
-  status_id: number;
-  image_projet_id: number[];
-  sous_genre_id: number[];
-  image_projet_fini: number[];
-  termine_description: string;
-  reference_id: number[];
-  client_id: number;
+  status_id: number | null;
+  image_projet_id: number[] | null;
+  sous_genre_id: number[] | null;
+  image_projet_fini: number[] | null;
+  termine_description: string | null;
+  reference_id: number[] | null;
+  client_id: number | null;
 }
 
 export interface Reference {
-  id: number;
-  client_id: number;
-  title: string;
-  description: string;
-  link: string;
-  category: number;
-  date: Date;
+  id?: number;
+  client_id?: number;
+  title?: string;
+  description?: string;
+  link?: string;
+  category?: number;
+  date?: Date;
 }
 
 export interface Membre {
