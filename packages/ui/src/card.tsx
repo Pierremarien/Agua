@@ -1,27 +1,13 @@
 import * as React from "react";
 
-export function Card({
-  title,
-  children,
-  href,
-}: {
-  title: string;
-  children: React.ReactNode;
-  href: string;
-}): JSX.Element {
+export function Card({ title, href, className }: { title: string; href: string; className: string }): JSX.Element {
   return (
     <a
-      className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-neutral-700 hover:bg-neutral-800/30"
-      href={`${href}?utm_source=create-turbo&utm_medium=with-tailwind&utm_campaign=create-turbo"`}
+      className={`block h-full w-full rounded-lg bg-white opacity-25 ${className}`}
+      href={`/${href}`}
       rel="noopener noreferrer"
       target="_blank">
-      <h2 className="mb-3 text-2xl font-semibold">
-        {title}{" "}
-        <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-          -&gt;
-        </span>
-      </h2>
-      <p className="m-0 max-w-[30ch] text-sm opacity-50">{children}</p>
+      <h2 className="bottom-2 left-2 z-10 text-xl font-semibold text-black">{title}</h2>
     </a>
   );
 }
