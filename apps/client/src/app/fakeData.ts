@@ -38,5 +38,5 @@ export const companyData: Company = {
 
 export const imgProjetData: Image_projet[] = [
   { id: 0, url: "/tombeau1.jpeg", description: "tombeau du géant" },
-  { id: 0, url: "/tombeau2.jpeg", description: "tombeau du géant" },
+  { id: 1, url: "/tombeau2.jpeg", description: "tombeau du géant" },
 ];

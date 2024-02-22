@@ -16,18 +16,32 @@ export const Slider: React.FC<SliderProps> = ({ imgs, projectName }) => {
     setCurrentImgIndex((prevIndex) => (prevIndex + 1) % imgs.length);
   };
 
+  const handleImgSwitch = (index: number) => {
+    setCurrentImgIndex(index);
+  };
+
   useEffect(() => {
-    const delay = 6000;
-    const timeoutId = setTimeout(() => {
-      setProgressBar(100);
-      nextImg();
-      setTimeout(() => setProgressBar(0), 50);
-    }, delay);
+    const delay = 10000;
+    let animationFrameId: number;
+    let startTimestamp: number;
 
-    return () => clearTimeout(timeoutId);
+    const animate = (timestamp: number) => {
+      if (startTimestamp === undefined) startTimestamp = timestamp;
+      const elapsed = timestamp - startTimestamp;
+      const progress = Math.min(1, elapsed / delay); // 1 = 100%
+      setProgressBar(progress * 100); // Convert progress to percentage
+      if (progress < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      } else {
+        nextImg();
+        startTimestamp = timestamp;
+      }
+    };
+
+    animationFrameId = requestAnimationFrame(animate);
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, [currentImgIndex]);
-
-  console.log(progressBar);
 
   return (
     <div className="relative w-full">
@@ -41,12 +55,16 @@ export const Slider: React.FC<SliderProps> = ({ imgs, projectName }) => {
         )}
         <ul className="absolute right-4 top-4 z-50">
           {imgs.map((index) => (
-            <li key={index.id} className="my-2 block h-2 w-2 bg-white" />
+            <li
+              key={index.id}
+              className="z-block my-2 h-2 w-2 cursor-pointer bg-white"
+              onClick={() => handleImgSwitch(index.id)}
+            />
           ))}
         </ul>
       </figure>
       <div className="absolute bottom-0 z-50 flex w-full items-center">
-        <div className={`progress-bar z-50 h-3 w-full bg-white transition-all md:h-4`}></div>
+        <div className={`progress-bar z-50 h-3 bg-white md:h-4`} style={{ width: `${progressBar}%` }}></div>
       </div>
     </div>
   );
