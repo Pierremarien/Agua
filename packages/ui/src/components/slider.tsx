@@ -1,9 +1,10 @@
 "use client";
 
+import { Image_projet } from "@agua/utils";
 import React, { useState, useEffect } from "react";
 
 interface SliderProps {
-  imgs: any[];
+  imgs: Image_projet[];
   projectName: string;
 }
 
@@ -40,7 +41,7 @@ export const Slider: React.FC<SliderProps> = ({ imgs, projectName }) => {
         )}
         <ul className="absolute right-4 top-4 z-50">
           {imgs.map((index) => (
-            <li key={index} className="my-2 block h-2 w-2 bg-white" />
+            <li key={index.id} className="my-2 block h-2 w-2 bg-white" />
           ))}
         </ul>
       </figure>

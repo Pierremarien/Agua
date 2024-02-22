@@ -1,6 +1,6 @@
 import React from "react";
 import { referencesData, projectData, imgProjetData } from "../../fakeData";
-import { List, Title, Textblock, Slider } from "@agua/ui";
+import { List, Title, Textblock, Slider, ProjectNav } from "@agua/ui";
 
 const Projet = () => {
   const { title, target, description } = projectData;
@@ -14,6 +14,7 @@ const Projet = () => {
           <Textblock content={description} left={true} />
           <Title title="Médias" lg={false} />
           <List references={referencesData} />
+          <ProjectNav nextProj="/next" prevProj="/prev" />
         </>
       )}
     </div>
