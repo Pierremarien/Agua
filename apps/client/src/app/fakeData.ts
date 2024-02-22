@@ -1,4 +1,4 @@
-import { Reference, Projet, Company } from "@agua/utils";
+import { Reference, Projet, Company, Image_projet } from "@agua/utils";
 
 export const referencesData: Reference[] = [
   { title: "Reference 1", link: "/ex5" },
@@ -35,3 +35,8 @@ export const companyData: Company = {
   image: "ntm",
   logo: "ntm",
 };
+
+export const imgProjetData: Image_projet[] = [
+  { id: 0, url: "/tombeau1.jpeg", description: "tombeau du géant" },
+  { id: 0, url: "/tombeau2.jpeg", description: "tombeau du géant" },
+];
