@@ -11,51 +11,59 @@ datasource db {
 }
 
 model User {
-  id          Int     @id @default(autoincrement())
-  email       String  @unique
-  firstname   String?
-  lastname    String?
-  password    String  @unique
-  username    String  @unique
-  isAdmin     Boolean @default(false)
-  isModerator Boolean @default(false)
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String    @unique
+  username String    @unique
+  id_token Int       @unique @default(autoincrement())
+  rol_usrs  rol_usr[]
 }
 
-model Projet {
-  id                  Int               @id @default(autoincrement())
-  title               String
-  description         String
-  preview             String
-  target              String
-  status              Status            @relation(fields: [statusId], references: [id])
-  statusId            Int
-  image_projet        Image_projet      @relation(fields: [image_projetId], references: [id])
-  image_projetId      Int
-  image_projet_fini   Image_projet_fini @relation(fields: [image_projet_finiId], references: [id])
-  image_projet_finiId Int
-  termine_description String
-  reference           Reference         @relation(fields: [referenceId], references: [id])
-  referenceId         Int
-  client              Client            @relation(fields: [clientId], references: [id])
-  clientId            Int
+model Roles {
+  id      Int       @id @default(autoincrement())
+  role    String
+  rol_usrs rol_usr[]
 }
 
-model Membre {
+model rol_usr {
+  id     Int   @id @default(autoincrement())
+  user   User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  role   Roles @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId Int
+}
+
+model Project {
+  id                     Int    @id @default(autoincrement())
+  title                  String
+  description            String
+  preview                String
+  target                 String
+  status                 String
+  terminated_description String
+  client     Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId   Int
+  subgenre   Subgenre    @relation(fields: [subgenreId], references: [id], onDelete: Cascade)
+  subgenreId Int
+  genre      Genre       @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  genreId    Int
+  Files       File[]
+  References  Reference[]
+}
+
+model Member {
   id          Int     @id @default(autoincrement())
-  firstName   String
-  lastName    String
+  name        String
   email       String?
   phone       Int?
   position    String
-  image       String
   description String
-  cv          String?
+  Files        File[]
 }
 
 model Company {
-  id               Int    @id @default(autoincrement())
+  id               Int     @id @default(autoincrement())
   name             String
-  description      String
   logo             String
   email            String
   phone            Int
@@ -66,68 +74,71 @@ model Company {
   about_team       String
   about_company    String
   about_references String
-  image            String
-  facebook         String
-  linkedin         String
-  instagram        String
+  facebook         String?
+  linkedin         String?
+  instagram        String?
+  Files             File[]
 }
 
 model Reference {
   id          Int      @id @default(autoincrement())
-  title       String
-  description String
-  client      Client   @relation(fields: [clientId], references: [id])
-  clientId    Int
+  title       String?
+  description String?
+  client      Client?  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId    Int?
   date        DateTime
-  link        String
-  category    Category @relation(fields: [id], references: [id])
-  categoryId  Int
-  Projet      Projet[]
+  link        String?
+  link_text   String?
+  type        String
+  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int
+  Files        File[]
 }
 
-model Image_projet {
-  id     Int      @id @default(autoincrement())
-  name   String
-  url    String
-  Projet Projet[]
-}
-
-model Image_projet_fini {
-  id     Int      @id @default(autoincrement())
-  name   String
-  url    String
-  Projet Projet[]
-}
-
-model Sous_genre {
-  id      Int    @id @default(autoincrement())
+model Subgenre {
+  id      Int       @id @default(autoincrement())
   name    String
-  genre   Genre  @relation(fields: [genreId], references: [id])
+  genre   Genre     @relation(fields: [genreId], references: [id], onDelete: Cascade)
   genreId Int
+  Projects Project[]
 }
 
 model Genre {
-  id         Int          @id @default(autoincrement())
-  name       String
-  Sous_genre Sous_genre[]
-}
-
-model Category {
-  id        Int         @id @default(autoincrement())
-  name      String
-  Reference Reference[]
+  id       Int        @id @default(autoincrement())
+  name     String
+  Projects  Project[]
+  Subgenres Subgenre[]
 }
 
 model Client {
   id        Int         @id @default(autoincrement())
   name      String
-  mail      String
-  reference Reference[]
-  projet    Projet[]
+  mail      String?
+  phone     Int?
+  Projects   Project[]
+  References Reference[]
 }
 
-model Status {
-  id     Int      @id @default(autoincrement())
-  etat   String
-  Projet Projet[]
+model File {
+  id          Int        @id @default(autoincrement())
+  name        String
+  path        String
+  project     Project    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int
+  reference   Reference  @relation(fields: [referenceId], references: [id], onDelete: Cascade)
+  referenceId Int
+  timestamp   DateTime
+  format      String
+  member      Member     @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  memberId    Int
+  company     Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId   Int
+  File_type  File_type @relation(fields: [fileTypeId], references: [id], onDelete: Cascade)
+  fileTypeId Int
+}
+
+model File_type {
+  id   Int    @id @default(autoincrement())
+  name String
+  Files File[]
 }
