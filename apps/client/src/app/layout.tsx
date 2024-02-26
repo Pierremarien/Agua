@@ -1,7 +1,9 @@
 import "./globals.css";
 import "@agua/ui/styles.css";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
+import { Menu } from "@agua/ui";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,9 +18,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
+  const headersList = headers();
+  const pathname = headersList.get("x-pathname") || "";
+  const isHomepage = pathname === "/";
+
   return (
     <html lang="en">
-      <body className={poppins.className}>{children}</body>
+      <body className={poppins.className}>
+        <Menu home={isHomepage} />
+        {children}
+      </body>
     </html>
   );
 }

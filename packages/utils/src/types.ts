@@ -81,3 +81,8 @@ export interface Genre {
   id: number;
   name: string;
 }
+
+export interface NavItem {
+  name: string;
+  href: string;
+}

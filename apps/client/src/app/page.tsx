@@ -1,15 +1,8 @@
 import { Card } from "@agua/ui";
 import { companyData } from "./fakeData";
+import { NavItems } from "@agua/utils";
 
 export const Home = () => {
-  const links = [
-    { title: "Home", href: "/" },
-    { title: "Projets", href: "/projets" },
-    { title: "Références", href: "/references" },
-    { title: "À propos", href: "/a-propos" },
-    { title: "Contact", href: "/contact" },
-  ];
-
   const cardGridPositions = (index: number): string => {
     switch (index) {
       case 0:
@@ -34,8 +27,8 @@ export const Home = () => {
           {companyData.name}
         </h1>
       )}
-      {links.map(({ title, href }, index) => (
-        <Card href={href} key={title} title={title} className={cardGridPositions(index)} />
+      {NavItems.map(({ name, href }, index) => (
+        <Card href={href} key={name} title={name} className={cardGridPositions(index)} />
       ))}
     </main>
   );
