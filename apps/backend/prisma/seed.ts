@@ -13,124 +13,162 @@ async function main() {
     },
   });
 
-  const role1 = await prisma.roles.create({
-    data: {
+  const role1 = await prisma.roles.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
       role: "ADMIN",
     },
   });
 
-  const role2 = await prisma.roles.create({
-    data: {
+  const role2 = await prisma.roles.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
       role: "MODERATOR",
     },
   });
 
-  const role3 = await prisma.roles.create({
-    data: {
+  const role3 = await prisma.roles.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
       role: "USER",
     },
   });
 
-  const userRole1 = await prisma.rol_usr.create({
-    data: {
+  const userRole1 = await prisma.rol_usr.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
       userId: user1.id,
       roleId: role1.id,
     },
   });
-  const genre1 = await prisma.genre.create({
-    data: {
+  const genre1 = await prisma.genre.upsert({
+    where: { id: 1 },
+    update: {},
+    create: {
       name: "Urbanisme",
     },
   });
 
-  const genre2 = await prisma.genre.create({
-    data: {
+  const genre2 = await prisma.genre.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       name: "Architecture",
     },
   });
 
-  const genre3 = await prisma.genre.create({
-    data: {
+  const genre3 = await prisma.genre.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
       name: "Aménagement",
     },
   });
 
-  const subgenre1 = await prisma.subgenre.create({
-    data: {
+  const subgenre1 = await prisma.subgenre.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       name: "Faisabilité",
       genreId: genre1.id,
     },
   });
 
-  const subgenre2 = await prisma.subgenre.create({
-    data: {
+  const subgenre2 = await prisma.subgenre.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       name: "Tourisme",
       genreId: genre1.id,
     },
   });
 
-  const subgenre3 = await prisma.subgenre.create({
-    data: {
+  const subgenre3 = await prisma.subgenre.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
       name: "Abords",
       genreId: genre3.id,
     },
   });
 
-  const subgenre4 = await prisma.subgenre.create({
-    data: {
+  const subgenre4 = await prisma.subgenre.upsert({
+    where: {id : 4},
+    update: {},
+    create: {
       name: "Parc",
       genreId: genre3.id,
     },
   });
 
-  const subgenre5 = await prisma.subgenre.create({
-    data: {
+  const subgenre5 = await prisma.subgenre.upsert({
+    where: {id : 5},
+    update: {},
+    create: {
       name: "Place",
       genreId: genre3.id,
     },
   });
 
-  const subgenre6 = await prisma.subgenre.create({
-    data: {
+  const subgenre6 = await prisma.subgenre.upsert({
+    where: {id : 6},
+    update: {},
+    create: {
       name: "Equipement",
       genreId: genre3.id,
     },
   });
 
-  const subgenre7 = await prisma.subgenre.create({
-    data: {
+  const subgenre7 = await prisma.subgenre.upsert({
+    where: {id : 7},
+    update: {},
+    create: {
       name: "Public",
       genreId: genre2.id,
     },
   });
 
-  const subgenre8 = await prisma.subgenre.create({
-    data: {
+  const subgenre8 = await prisma.subgenre.upsert({
+    where: {id : 8},
+    update: {},
+    create: {
       name: "Privé",
       genreId: genre2.id,
     },
   });
 
-  const client1 = await prisma.client.create({
-    data: {
+  const client1 = await prisma.client.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       name: "Client 1",
     },
   });
 
-  const client2 = await prisma.client.create({
-    data: {
+  const client2 = await prisma.client.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       name: "Client 2",
     },
   });
 
-  const client3 = await prisma.client.create({
-    data: {
+  const client3 = await prisma.client.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
       name: "Client 3",
     },
   });
 
-  const project1 = await prisma.project.create({
-    data: {
+  const project1 = await prisma.project.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       title: "Projet 1",
       description:
         "Description du projet 1 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.",
@@ -144,8 +182,10 @@ async function main() {
     },
   });
 
-  const project2 = await prisma.project.create({
-    data: {
+  const project2 = await prisma.project.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       title: "Projet 2",
       description:
         "Description du projet 2 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.",
@@ -158,8 +198,10 @@ async function main() {
     },
   });
 
-  const project3 = await prisma.project.create({
-    data: {
+  const project3 = await prisma.project.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
       title: "Projet 3",
       description:
         "Description du projet 3 : Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non elit dui.",
@@ -172,51 +214,65 @@ async function main() {
     },
   });
 
-  const member1 = await prisma.member.create({
-    data: {
+  const member1 = await prisma.member.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       name: "Membre 1",
       position: "Associé",
       description: "Description du membre 1",
     },
   });
-  const member2 = await prisma.member.create({
-    data: {
+  const member2 = await prisma.member.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       name: "Membre 2",
       position: "Associé",
       description: "Description du membre 2",
     },
   });
-  const member3 = await prisma.member.create({
-    data: {
+  const member3 = await prisma.member.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
       name: "Membre 3",
       position: "Architecte",
       description: "Description du membre 3",
     },
   });
-  const member4 = await prisma.member.create({
-    data: {
+  const member4 = await prisma.member.upsert({
+    where: {id : 4},
+    update: {},
+    create: {
       name: "Membre 4",
       position: "Architecte",
       description: "Description du membre 4",
     },
   });
-  const member5 = await prisma.member.create({
-    data: {
+  const member5 = await prisma.member.upsert({
+    where: {id : 5},
+    update: {},
+    create: {
       name: "Membre 5",
       position: "Architecte",
       description: "Description du membre 5",
     },
   });
-  const member6 = await prisma.member.create({
-    data: {
+  const member6 = await prisma.member.upsert({
+    where: {id : 6},
+    update: {},
+    create: {
       name: "Membre 6",
       position: "Architecte",
       description: "Description du membre 6",
     },
   });
 
-  const company1 = await prisma.company.create({
-    data: {
+  const company1 = await prisma.company.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       name: "agua",
       logo: "https://www.agua.com/logo.png",
       email: "contact@agua.be",
@@ -234,8 +290,10 @@ async function main() {
     },
   });
 
-  const reference1 = await prisma.reference.create({
-    data: {
+  const reference1 = await prisma.reference.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
       title: "Reference 1",
       description: "Description de la reference 1",
       projectId: project1.id,
@@ -245,8 +303,10 @@ async function main() {
     },
   });
 
-  const reference2 = await prisma.reference.create({
-    data: {
+  const reference2 = await prisma.reference.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
       title: "Reference 2",
       description: "Description de la reference 2",
       projectId: project2.id,
@@ -256,27 +316,105 @@ async function main() {
     },
   });
 
-    const reference3 = await prisma.reference.create({
-        data: {
-        title: "Reference 3",
-        description: "Description de la reference 3",
-        projectId: project3.id,
-        clientId: client3.id,
-        type: "client",
-        date: new Date(),
-        },
-    });
+  const reference3 = await prisma.reference.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
+      title: "Reference 3",
+      description: "Description de la reference 3",
+      projectId: project3.id,
+      clientId: client3.id,
+      type: "client",
+      date: new Date(),
+    },
+  });
 
-    const reference4 = await prisma.reference.create({
-        data: {
-        title: "Reference 4",
-        description: "Description de la reference 4",
-        clientId: client1.id,
-        type: "client",
-        date: new Date(),
-        },
-    });
+  const reference4 = await prisma.reference.upsert({
+    where: {id : 4},
+    update: {},
+    create: {
+      title: "Reference 4",
+      description: "Description de la reference 4",
+      clientId: client1.id,
+      type: "client",
+      date: new Date(),
+    },
+  });
 
+  const file_type1 = await prisma.file_type.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
+      name: "carousel",
+    },
+  });
+
+  const file_type2 = await prisma.file_type.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
+      name: "terminé",
+    },
+  });
+
+  const file_type3 = await prisma.file_type.upsert({
+    where: {id : 3},
+    update: {},
+    create: {
+      name: "preview",
+    },
+  });
+
+  const file1 = await prisma.file.upsert({
+    where: {id : 1},
+    update: {},
+    create: {
+      name: "File 1",
+      path: "/tombeau1.jpeg",
+      projectId: project1.id,
+      timestamp: new Date(),
+      format: "jpeg",
+    },
+  });
+  
+  const file2 = await prisma.file.upsert({
+    where: {id : 2},
+    update: {},
+    create: {
+      name: "File 2",
+      path: "/tombeau2.jpeg",
+      projectId: project1.id,
+      timestamp: new Date(),
+      format: "jpeg",
+    },
+  });
+
+  const fileTypeOnFile1 = await prisma.fileTypeOnFile.upsert({
+    where: { fileId_fileTypeId: { fileId: file1.id, fileTypeId: file_type1.id } },
+    update: {},
+    create: {
+      fileId: file1.id,
+      fileTypeId: file_type1.id,
+    },
+  });
+  
+  const fileTypeOnFile2 = await prisma.fileTypeOnFile.upsert({
+    where: { fileId_fileTypeId: { fileId: file1.id, fileTypeId: file_type3.id } },
+    update: {},
+    create: {
+      fileId: file1.id,
+      fileTypeId: file_type3.id,
+    },
+  });
+
+  const fileTypeOnFile3 = await prisma.fileTypeOnFile.upsert({
+    where: { fileId_fileTypeId: { fileId: file2.id, fileTypeId: file_type2.id } },
+    update: {},
+    create: {
+      fileId: file2.id,
+      fileTypeId: file_type2.id,
+    },
+  });
 
 }
 
