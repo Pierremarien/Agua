@@ -34,7 +34,7 @@ CREATE TABLE "Project" (
     "preview" TEXT NOT NULL,
     "target" TEXT NOT NULL,
     "status" TEXT NOT NULL,
-    "terminated_description" TEXT NOT NULL,
+    "terminated_description" TEXT,
     "clientId" INTEGER NOT NULL,
     "subgenreId" INTEGER NOT NULL,
     "genreId" INTEGER NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE "Reference" (
     "link" TEXT,
     "link_text" TEXT,
     "type" TEXT NOT NULL,
-    "projectId" INTEGER NOT NULL,
+    "projectId" INTEGER,
 
     CONSTRAINT "Reference_pkey" PRIMARY KEY ("id")
 );

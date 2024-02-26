@@ -40,7 +40,7 @@ model Project {
   preview                String
   target                 String
   status                 String
-  terminated_description String
+  terminated_description String?
   client     Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
   clientId   Int
   subgenre   Subgenre    @relation(fields: [subgenreId], references: [id], onDelete: Cascade)
@@ -90,8 +90,8 @@ model Reference {
   link        String?
   link_text   String?
   type        String
-  project     Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  projectId   Int
+  project     Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int?
   Files        File[]
 }
 
