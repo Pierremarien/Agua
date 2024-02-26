@@ -5,20 +5,24 @@ import { List, Title, Textblock, Slider, ProjectNav, ProjectStatus } from "@agua
 const Projet = () => {
   const { title, target, description } = projectData;
   return (
-    <div className="px-4 py-8">
+    <main className="px-4 py-8">
       {projectData && (
-        <>
+        <section className="mt-8 space-y-4">
           <Title title={title} lg={true} />
           <ProjectStatus client="Botassart" finished={false} />
           <Slider imgs={imgProjetData} projectName={title} />
-          <Title title={target} lg={false} />
-          <Textblock content={description} left={true} />
-          <Title title="Médias" lg={false} />
-          <List references={referencesData} />
+          <div className="space-y-4 py-4">
+            <Title title={target} lg={false} />
+            <Textblock content={description} left={true} />
+          </div>
+          <div className="space-y-4 py-4">
+            <Title title="Médias" lg={false} />
+            <List references={referencesData} />
+          </div>
           <ProjectNav nextProj="/next" prevProj="/prev" />
-        </>
+        </section>
       )}
-    </div>
+    </main>
   );
 };
 
