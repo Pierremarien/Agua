@@ -1,3 +1,17 @@
-import { Projet, Reference, Company, Membre, Sous_genre, User, Genre, Image_projet, Image_projet_fini } from "./types";
+import {
+  Projet,
+  Reference,
+  Company,
+  Membre,
+  Sous_genre,
+  User,
+  Genre,
+  Image_projet,
+  Image_projet_fini,
+  NavItem,
+} from "./types";
 
-export type { Projet, Reference, Company, Membre, Sous_genre, User, Genre, Image_projet, Image_projet_fini };
+import { NavItems } from "./staticData";
+
+export type { Projet, Reference, Company, Membre, Sous_genre, User, Genre, Image_projet, Image_projet_fini, NavItem };
+export { NavItems };
