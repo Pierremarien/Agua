@@ -145,6 +145,73 @@ export class ProjectsService {
     };
   }
 
+  async findProjectsBySubgenre(subgenreId: number, page = 1, pageSize = 10) {
+    const totalProjects = await this.prisma.project.count({
+      where: { subgenre: { id: Number(subgenreId) } },
+    });
+    const totalPages = Math.ceil(totalProjects / pageSize);
+    const skip = (page - 1) * pageSize;
+
+    const projects = await this.prisma.project.findMany({
+      skip,
+      take: pageSize,
+      where: { subgenre: { id: Number(subgenreId) } },
+      select: {
+        id: true,
+        title: true,
+        preview: true,
+        status: true,
+        clientId: true,
+      },
+    });
+
+    const projectData = await Promise.all(
+      projects.map(async (project) => {
+        const files = await this.prisma.file.findMany({
+          where: {
+            projectId: project.id,
+            fileTypes: {
+              some: {
+                fileType: {
+                  id: 3,
+                },
+              },
+            },
+          },
+          select: {
+            id: true,
+            name: true,
+            path: true,
+          },
+        });
+
+        const clients = await this.prisma.client.findMany({
+          where: {
+            id: project.clientId,
+          },
+          select: {
+            name: true,
+          },
+        });
+
+        return {
+          ...project,
+          Files: files,
+          client: clients,
+        };
+      })
+    );
+
+    return {
+      data: projectData,
+      meta: {
+        totalProjects,
+        totalPages,
+        currentPage: page,
+      },
+    };
+  }
+
   findOne(id: number) {
     return this.prisma.project.findUnique({
       where: { id: id },

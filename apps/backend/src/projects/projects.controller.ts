@@ -29,6 +29,13 @@ export class ProjectsController {
     return this.projectsService.findProjectsByGenre(genreId);
   }
 
+  @Get("subgenre/:subgenreId")
+  @ApiOkResponse({ type: [ProjectEntity] })
+  @ApiQuery({ name: 'page', required: false, description: 'Page number for pagination', type: Number })
+  findProjectsBySubgenre(@Param("subgenreId") subgenreId: number, @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number){
+    return this.projectsService.findProjectsBySubgenre(subgenreId);
+  }
+
   @Get(":id")
   @ApiOkResponse({ type: ProjectEntity })
   findOne(@Param("id") id: string) {
