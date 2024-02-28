@@ -24,7 +24,8 @@ export class ProjectsController {
 
   @Get("genre/:genreId")
   @ApiOkResponse({ type: [ProjectEntity] })
-  findProjectsByGenre(@Param("genreId") genreId: number) {
+  @ApiQuery({ name: 'page', required: false, description: 'Page number for pagination', type: Number })
+  findProjectsByGenre(@Param("genreId") genreId: number, @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number){
     return this.projectsService.findProjectsByGenre(genreId);
   }
 
