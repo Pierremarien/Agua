@@ -54,7 +54,7 @@ export const Slider: React.FC<SliderProps> = ({ imgs, projectName }) => {
             className="absolute h-full w-full object-cover"
           />
         )}
-        <ul className="absolute right-4 top-4 z-50">
+        <ul className="absolute right-4 top-4 z-20">
           {imgs.map((index) => (
             <li
               key={index.id}
@@ -64,8 +64,8 @@ export const Slider: React.FC<SliderProps> = ({ imgs, projectName }) => {
           ))}
         </ul>
       </figure>
-      <div className="absolute bottom-0 z-50 flex w-full items-center">
-        <div className={`progress-bar z-50 h-3 bg-white md:h-4`} style={{ width: `${progressBar}%` }}></div>
+      <div className="absolute bottom-0 z-30 flex w-full items-center">
+        <div className={`progress-bar h-3 bg-white md:h-4`} style={{ width: `${progressBar}%` }}></div>
       </div>
     </div>
   );

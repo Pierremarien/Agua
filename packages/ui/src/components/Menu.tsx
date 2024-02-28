@@ -12,7 +12,8 @@ export const Menu = (props: { home: boolean }) => {
   };
 
   return (
-    <div className="absolute h-screen w-screen" onClick={handleMenuOpen}>
+    <>
+      {menuOpen && <div className="fixed z-40 h-full w-screen" onClick={handleMenuOpen} />}
       <button
         className={
           home
@@ -21,9 +22,9 @@ export const Menu = (props: { home: boolean }) => {
         }
         onClick={handleMenuOpen}>
         {!menuOpen && (
-          <>
+          <span className="flex items-center gap-2">
             Menu <img src="/menu.svg" className="h-5 w-5" />
-          </>
+          </span>
         )}
         <ul className={menuOpen ? "flex flex-col items-start" : "hidden"}>
           {NavItems.map(({ name, href }, index) => (
@@ -33,6 +34,6 @@ export const Menu = (props: { home: boolean }) => {
           ))}
         </ul>
       </button>
-    </div>
+    </>
   );
 };

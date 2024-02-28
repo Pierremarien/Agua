@@ -87,3 +87,10 @@ export interface NavItem {
   name: string;
   href: string;
 }
+
+export interface Client {
+  id: number;
+  name: string;
+  mail?: string;
+  phone?: number;
+}
