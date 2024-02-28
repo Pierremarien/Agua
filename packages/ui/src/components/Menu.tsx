@@ -12,7 +12,7 @@ export const Menu = (props: { home: boolean }) => {
   };
 
   return (
-    <div className="absolute h-screen w-screen" onClick={handleMenuOpen}>
+    <div className="fixed z-40 h-full w-screen" onClick={menuOpen ? handleMenuOpen : () => {}}>
       <button
         className={
           home
