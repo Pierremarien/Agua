@@ -19,8 +19,8 @@ export const CategoryMenu = () => {
       {CatItems.map((catItem, index) => (
         <li key={index}>
           <button
-            className={`flex items-center gap-2 opacity-75 hover:opacity-100 ${
-              selectedCat === catItem.name ? "opacity-100" : ""
+            className={`flex items-center gap-2 hover:opacity-100 ${
+              selectedCat === catItem.name ? "opacity-100" : "opacity-75"
             }`}
             onClick={() => handleCatSwitch(catItem.name)}>
             <span className={`block h-2 w-2 ${selectedCat === catItem.name ? "bg-white" : ""}`} />
