@@ -3,7 +3,7 @@ import "@agua/ui/styles.css";
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
-import { Menu } from "@agua/ui";
+import { Menu, Footer } from "@agua/ui";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <body className={poppins.className}>
         <Menu home={isHomepage} />
         {children}
+        <Footer home={isHomepage} />
       </body>
     </html>
   );
