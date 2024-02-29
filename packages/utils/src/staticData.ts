@@ -7,3 +7,10 @@ export const NavItems: NavItem[] = [
   { name: "À propos", href: "/a-propos" },
   { name: "Contact", href: "/contact" },
 ];
+
+export const CatItems: any[] = [
+  { name: "Urbanisme" },
+  { name: "Aménagements" },
+  { name: "Architecture" },
+  { name: "Tous" },
+];

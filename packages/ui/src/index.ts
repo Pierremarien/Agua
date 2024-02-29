@@ -7,3 +7,4 @@ export { Slider } from "./components/slider";
 export * from "./components/projectNav";
 export * from "./components/Menu";
 export * from "./components/ProjectStatus";
+export * from "./components/CategoryMenu";

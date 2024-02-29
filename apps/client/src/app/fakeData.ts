@@ -27,6 +27,7 @@ export const companyData: Company = {
   name: "agua",
   address: "ntm",
   locality: "ntm",
+  fax: "ddd",
   email: "ntm",
   phone: "ntm",
   about_team: "ntm",
