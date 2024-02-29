@@ -9,3 +9,144 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id       Int       @id @default(autoincrement())
+  email    String    @unique
+  password String    @unique
+  username String    @unique
+  id_token Int       @unique @default(autoincrement())
+  rol_usrs  rol_usr[]
+}
+
+model Roles {
+  id      Int       @id @default(autoincrement())
+  role    String
+  rol_usrs rol_usr[]
+}
+
+model rol_usr {
+  id     Int   @id @default(autoincrement())
+  user   User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId Int
+  role   Roles @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  roleId Int
+}
+
+model Project {
+  id                     Int    @id @default(autoincrement())
+  title                  String
+  description            String
+  preview                String
+  target                 String
+  status                 String
+  terminated_description String?
+  client     Client      @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId   Int
+  subgenre   Subgenre    @relation(fields: [subgenreId], references: [id], onDelete: Cascade)
+  subgenreId Int
+  genre      Genre       @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  genreId    Int
+  Files       File[]
+  References  Reference[]
+}
+
+model Member {
+  id          Int     @id @default(autoincrement())
+  name        String
+  email       String?
+  phone       Int?
+  position    String
+  description String
+  Files        File[]
+}
+
+model Company {
+  id               Int     @id @default(autoincrement())
+  name             String
+  logo             String
+  email            String
+  phone            Int
+  fax              Int
+  address          String
+  locality         String
+  postalCode       Int
+  about_team       String
+  about_company    String
+  about_references String
+  facebook         String?
+  linkedin         String?
+  instagram        String?
+  Files             File[]
+}
+
+model Reference {
+  id          Int      @id @default(autoincrement())
+  title       String?
+  description String?
+  client      Client?  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  clientId    Int?
+  date        DateTime
+  link        String?
+  link_text   String?
+  type        String
+  project     Project?  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int?
+  Files        File[]
+}
+
+model Subgenre {
+  id      Int       @id @default(autoincrement())
+  name    String
+  genre   Genre     @relation(fields: [genreId], references: [id], onDelete: Cascade)
+  genreId Int
+  Projects Project[]
+}
+
+model Genre {
+  id       Int        @id @default(autoincrement())
+  name     String
+  Projects  Project[]
+  Subgenres Subgenre[]
+}
+
+model Client {
+  id        Int         @id @default(autoincrement())
+  name      String
+  mail      String?
+  phone     Int?
+  Projects   Project[]
+  References Reference[]
+}
+
+model File {
+  id          Int        @id @default(autoincrement())
+  name        String
+  path        String
+  project     Project?    @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId   Int?
+  reference   Reference?  @relation(fields: [referenceId], references: [id], onDelete: Cascade)
+  referenceId Int?
+  timestamp   DateTime
+  format      String
+  member      Member?     @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  memberId    Int?
+  company     Company?    @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  companyId   Int?
+  fileTypes   FileTypeOnFile[]
+}
+
+model File_type {
+  id   Int    @id @default(autoincrement())
+  name String
+  files FileTypeOnFile[]
+}
+
+model FileTypeOnFile {
+  fileId Int
+  fileTypeId Int
+  file File @relation(fields: [fileId], references: [id])
+  fileType File_type @relation(fields: [fileTypeId], references: [id])
+
+  @@id([fileId, fileTypeId])
+}
