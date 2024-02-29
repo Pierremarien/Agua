@@ -29,8 +29,13 @@ export const CategoryMenu = () => {
           {selectedCat === catItem.name && (
             <ul>
               {catItem.subCat.map((subCatItem: string, subIndex: number) => (
-                <li key={subIndex} className="ml-4">
-                  <span className="cursor-pointer opacity-60 hover:opacity-100">{subCatItem}</span>
+                <li key={subIndex} className="ml-4" onClick={() => handleSubCatSwitch(subCatItem)}>
+                  <span
+                    className={`cursor-pointer hover:opacity-100 ${
+                      selectedSubCat === subCatItem ? "opacity-100" : "opacity-60"
+                    }`}>
+                    {subCatItem}
+                  </span>
                 </li>
               ))}
             </ul>
