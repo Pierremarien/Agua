@@ -9,8 +9,8 @@ export const NavItems: NavItem[] = [
 ];
 
 export const CatItems: any[] = [
-  { name: "Urbanisme" },
-  { name: "Aménagements" },
-  { name: "Architecture" },
-  { name: "Tous" },
+  { name: "Urbanisme", subCat: ["Tous", "Faisabilité", "Tourisme"] },
+  { name: "Aménagements", subCat: ["Tous", "Abords", "Parc"] },
+  { name: "Architecture", subCat: ["Tous", "Abords", "Parc"] },
+  { name: "Tous", subCat: ["Tous", "Abords", "Parc"] },
 ];

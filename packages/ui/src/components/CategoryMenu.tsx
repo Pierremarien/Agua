@@ -3,22 +3,38 @@ import React, { useState } from "react";
 import { CatItems } from "@agua/utils";
 
 export const CategoryMenu = () => {
-  const [selectedCat, setSelectedCat] = useState("all");
+  const [selectedCat, setSelectedCat] = useState("Tous");
+  const [selectedSubCat, setSelectedSubCat] = useState("Tous");
 
   const handleCatSwitch = (category: string) => {
     setSelectedCat(category);
   };
 
+  const handleSubCatSwitch = (subCategory: string) => {
+    setSelectedSubCat(subCategory);
+  };
+
   return (
     <ul className="my-4 flex gap-8 font-light">
-      {CatItems.map(({ name }, index) => (
+      {CatItems.map((catItem, index) => (
         <li key={index}>
           <button
-            className="flex items-center gap-2 opacity-75 hover:opacity-100"
-            onClick={() => handleCatSwitch(name)}>
-            <span className={`block h-2 w-2 ${selectedCat === name ? "bg-white" : ""}`} />
-            {name}
+            className={`flex items-center gap-2 opacity-75 hover:opacity-100 ${
+              selectedCat === catItem.name ? "opacity-100" : ""
+            }`}
+            onClick={() => handleCatSwitch(catItem.name)}>
+            <span className={`block h-2 w-2 ${selectedCat === catItem.name ? "bg-white" : ""}`} />
+            {catItem.name}
           </button>
+          {selectedCat === catItem.name && (
+            <ul>
+              {catItem.subCat.map((subCatItem: string, subIndex: number) => (
+                <li key={subIndex} className="ml-4">
+                  <span className="cursor-pointer opacity-60 hover:opacity-100">{subCatItem}</span>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
       ))}
     </ul>
