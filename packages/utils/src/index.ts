@@ -12,7 +12,7 @@ import {
   Client,
 } from "./types";
 
-import { NavItems, CatItems } from "./staticData";
+import { NavItems, CatItems, SocialItems } from "./staticData";
 
 export type {
   Projet,
@@ -27,4 +27,4 @@ export type {
   NavItem,
   Client,
 };
-export { NavItems, CatItems };
+export { NavItems, CatItems, SocialItems };

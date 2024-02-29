@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Poppins } from "next/font/google";
 import { Menu, Footer } from "@agua/ui";
+import { companyData } from "./fakeData";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <body className={poppins.className}>
         <Menu home={isHomepage} />
         {children}
-        <Footer home={isHomepage} />
+        <Footer home={isHomepage} {...companyData} />
       </body>
     </html>
   );

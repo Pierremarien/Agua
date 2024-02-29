@@ -4,7 +4,7 @@ import { List } from "@agua/ui";
 
 const Refs = () => {
   return (
-    <main className="min-h-screen">
+    <main>
       <List references={referencesData} hideChevron={true} clients={clientData} />
     </main>
   );

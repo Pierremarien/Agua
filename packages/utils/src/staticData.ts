@@ -14,3 +14,10 @@ export const CatItems: any[] = [
   { name: "Architecture", subCat: ["Tous", "Abords", "Parc"] },
   { name: "Tous", subCat: ["Tous", "Abords", "Parc"] },
 ];
+
+export const SocialItems: any[] = [
+  { name: "Facebook", href: "/" },
+  { name: "Instagram", href: "/" },
+  { name: "Youtube", href: "/" },
+  { name: "Linkedin", href: "/" },
+];
