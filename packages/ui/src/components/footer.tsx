@@ -14,7 +14,7 @@ export const Footer: React.FC<IFooter> = (props) => {
   const { home, address, phone, email, locality, name } = props;
 
   return (
-    <footer className={`w-full justify-between px-8 md:flex md:gap-8 md:px-16 ${home ? "hidden" : ""}`}>
+    <footer className={`w-full justify-between px-8 md:gap-8 md:px-16 ${home ? "hidden" : "md:flex"}`}>
       {name && (
         <div>
           <h2 className="flex h-44 w-44 items-end  justify-center bg-[#231F20] p-4 text-6xl">{name}</h2>

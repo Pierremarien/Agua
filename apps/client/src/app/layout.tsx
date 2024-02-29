@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }):
       <body className={poppins.className}>
         <Menu home={isHomepage} />
         {children}
-        <Footer home={isHomepage} {...companyData} />
+        <Footer {...companyData} home={isHomepage} />
       </body>
     </html>
   );
