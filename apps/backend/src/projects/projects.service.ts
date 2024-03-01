@@ -210,7 +210,7 @@ export class ProjectsService {
         currentPage: page,
       },
     };
-  }
+  } 
 
   findOne(id: number) {
     return this.prisma.project.findUnique({
