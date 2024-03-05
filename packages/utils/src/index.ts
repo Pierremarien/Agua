@@ -12,7 +12,7 @@ import {
   Client,
 } from "./types";
 
-import { NavItems } from "./staticData";
+import { NavItems, CatItems, SocialItems } from "./staticData";
 
 import { fetchProject, fetchProjects, fetchProjectsByGenre, fetchProjectsBySubgenre } from "./fetchData";
 
@@ -29,8 +29,8 @@ export type {
   NavItem,
   Client,
 };
-export { NavItems };
 
 export { fetchProject, fetchProjects, fetchProjectsByGenre, fetchProjectsBySubgenre };
 
 
+export { NavItems, CatItems, SocialItems };

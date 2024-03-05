@@ -17,7 +17,7 @@ const Projet = () => {
           </div>
           <div className="space-y-4 py-4">
             <Title title="Médias" lg={false} />
-            <List references={referencesData} isLarge={false} />
+            <List references={referencesData} hideChevron={false} />
           </div>
           <ProjectNav nextProj="/next" prevProj="/prev" />
         </section>
