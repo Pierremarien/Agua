@@ -14,6 +14,8 @@ import {
 
 import { NavItems } from "./staticData";
 
+import { fetchProject, fetchProjects, fetchProjectsByGenre, fetchProjectsBySubgenre } from "./fetchData";
+
 export type {
   Projet,
   Reference,
@@ -28,3 +30,7 @@ export type {
   Client,
 };
 export { NavItems };
+
+export { fetchProject, fetchProjects, fetchProjectsByGenre, fetchProjectsBySubgenre };
+
+

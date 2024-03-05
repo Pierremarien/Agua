@@ -38,7 +38,7 @@ export class ProjectsController {
   @ApiOkResponse({ type: [ProjectEntity] })
   @ApiQuery({ name: "page", required: false, description: "Page number for pagination", type: Number })
   findProjectsByGenre(
-    @Param("genreId") genreId: number,
+    @Param("genreId", ParseIntPipe) genreId: number,
     @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number
   ) {
     return this.projectsService.findProjectsByGenre(genreId);
@@ -48,7 +48,7 @@ export class ProjectsController {
   @ApiOkResponse({ type: [ProjectEntity] })
   @ApiQuery({ name: "page", required: false, description: "Page number for pagination", type: Number })
   findProjectsBySubgenre(
-    @Param("subgenreId") subgenreId: number,
+    @Param("subgenreId", ParseIntPipe) subgenreId: number,
     @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number
   ) {
     return this.projectsService.findProjectsBySubgenre(subgenreId);
@@ -56,19 +56,19 @@ export class ProjectsController {
 
   @Get(":id")
   @ApiOkResponse({ type: ProjectEntity })
-  findOne(@Param("id") id: string) {
+  findOne(@Param("id", ParseIntPipe) id: number) {
     return this.projectsService.findOne(+id);
   }
 
   @Patch(":id")
   @ApiOkResponse({ type: ProjectEntity })
-  update(@Param("id") id: string, @Body() updateProjectDto: UpdateProjectDto) {
+  update(@Param("id", ParseIntPipe) id: number, @Body() updateProjectDto: UpdateProjectDto) {
     return this.projectsService.update(+id, updateProjectDto);
   }
 
   @Delete(":id")
   @ApiOkResponse({ type: ProjectEntity })
-  remove(@Param("id") id: string) {
+  remove(@Param("id", ParseIntPipe) id: number) {
     return this.projectsService.remove(+id);
   }
 }

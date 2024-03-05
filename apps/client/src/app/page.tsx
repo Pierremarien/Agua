@@ -1,8 +1,12 @@
 import { Card } from "@agua/ui";
 import { companyData } from "./fakeData";
 import { NavItems } from "@agua/utils";
+import { fetchProjects } from "@agua/utils";
 
-export const Home = () => {
+
+export default async function Home() {
+  const projects = await fetchProjects(1);
+  console.log(projects);
   const cardGridPositions = (index: number): string => {
     switch (index) {
       case 0:
@@ -34,4 +38,5 @@ export const Home = () => {
   );
 };
 
-export default Home;
+
+
